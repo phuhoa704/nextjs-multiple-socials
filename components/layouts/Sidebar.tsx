@@ -23,17 +23,17 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
   const isAdmin = false;
 
   const adminLinks = [
-    { to: "/admin", icon: LayoutDashboard, label: "Dashboard" },
-    { to: "/admin/users", icon: Users, label: "Users" },
-    { to: "/admin/posts", icon: FileText, label: "All Posts" },
-    { to: "/admin/analytics", icon: BarChart3, label: "Analytics" },
+    { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+    { to: "/users", icon: Users, label: "Users" },
+    { to: "/posts", icon: FileText, label: "All Posts" },
+    { to: "/analytics", icon: BarChart3, label: "Analytics" },
   ];
 
   const userLinks = [
     { to: "/dashboard", icon: LayoutDashboard, label: "Overview" },
-    { to: "/dashboard/posts", icon: FileText, label: "My Posts" },
-    { to: "/dashboard/accounts", icon: Share2, label: "Social Accounts" },
-    { to: "/dashboard/create", icon: PlusCircle, label: "Create Post" },
+    { to: "/posts", icon: FileText, label: "My Posts" },
+    { to: "/social-accounts", icon: Share2, label: "Social Accounts" },
+    { to: "/create-post", icon: PlusCircle, label: "Create Post" },
   ];
 
   const links = isAdmin ? adminLinks : userLinks;

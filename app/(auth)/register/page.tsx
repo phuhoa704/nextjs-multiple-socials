@@ -5,7 +5,7 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { Share2 } from "lucide-react";
-import RegisterForm from "./form";
+import RegisterForm from "@/components/pages/register/form";
 
 export default function Register() {
   return (

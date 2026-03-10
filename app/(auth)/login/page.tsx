@@ -5,7 +5,7 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { Share2 } from "lucide-react";
-import LoginForm from "./form";
+import LoginForm from "@/components/pages/login/form";
 
 export default function Login() {
   return (
