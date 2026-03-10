@@ -5,22 +5,51 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+
+  --color-background: #f2f2f2;
+  --color-foreground: #0a0a0a;
+
+  --color-primary: var(--emerald-500);
+  --color-primary-foreground: var(--white);
+  
+  --color-secondary: var(--slate-200);
+  --color-secondary-foreground: var(--slate-900);
+  
+  --color-destructive: var(--red-600);
+  --color-destructive-foreground: var(--white);
+  
+  --color-muted: var(--slate-200);
+  --color-muted-foreground: var(--slate-500);
+  
+  --color-accent: var(--emerald-500);
+  --color-accent-foreground: var(--white);
+  
+  --color-popover: var(--white);
+  --color-popover-foreground: var(--slate-950);
+  
+  --color-card: rgba(255, 255, 255, 0.7);
+  --color-card-foreground: var(--slate-950);
+  
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-input: rgba(0, 0, 0, 0.05);
+  --color-ring: var(--emerald-500);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-md bg-white/70 border border-white/20 shadow-xl;
+  }
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/70 border border-white/10 shadow-xl;
+  }
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-600;
+  }
 }
