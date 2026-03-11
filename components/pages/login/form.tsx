@@ -6,16 +6,35 @@ import { Button } from "@/components/ui/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormValues, loginSchema } from "@/types/validation";
+import { useLoginWithEmail } from "@/hooks/auth";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  const router = useRouter();
+  const { mutate, isPending } = useLoginWithEmail();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
-  const onSubmit = async (data: LoginFormValues) => {};
+
+  const onSubmit = (data: LoginFormValues) => {
+    mutate(data, {
+      onSuccess: () => {
+        // Redirect to dashboard on success
+        router.push("/dashboard");
+      },
+      onError: (error: any) => {
+        // Simple error feedback
+        const msg = error.response?.data?.message || "Login failed";
+        // If toast is not available, maybe we can use console.error or a div
+        alert(msg);
+      },
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CardContent className="space-y-4">
@@ -60,9 +79,9 @@ export default function LoginForm() {
         <Button
           type="submit"
           className="w-full bg-indigo-600 hover:bg-indigo-700"
-          disabled={isSubmitting}
+          disabled={isPending}
         >
-          {isSubmitting ? "Signing in..." : "Sign In"}
+          {isPending ? "Signing in..." : "Sign In"}
         </Button>
         <div className="text-center text-sm text-slate-500">
           Don't have an account?{" "}
